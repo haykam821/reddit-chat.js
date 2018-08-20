@@ -14,12 +14,11 @@ class Client extends EventEmitter {
    */
   constructor(options) {
     super();
-    this.settings = {
+    
+    this.settings = Object.assign({
       autoJoinChannels: true
-    };
-    if (typeof options === "object") {
-      if (options.autoJoinChannels !== undefined) this.settings.autoJoinChannels = options.autoJoinChannels;
-    }
+    }, typeof options === "object" ? options : {});
+                                  
     this._sendbird = new Sendbird({
       appId: "2515BDA8-9D3A-47CF-9325-330BC37ADA13"
     });
